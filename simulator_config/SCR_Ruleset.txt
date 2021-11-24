@@ -1,0 +1,48 @@
+# SCR Simulator rule definition file for TKW Testbench
+# Richard Robinson, 23rd November 2021
+# 
+BEGIN RESPONSES
+#Event List Query Request Responses
+InvalidRequest_QUPC_IN180000SM04_Response TKW_ROOT/config/SPINE_MTH_SCR_Simulator/simulator_config/Templates/InvalidRequest_QUPC_IN180000SM04_Response.xml 200 urn:nhs:names:services:psisquery/QUQI_IN010000UK14
+DuplicateMessageId_QUPC_IN180000SM04_Response TKW_ROOT/config/SPINE_MTH_SCR_Simulator/simulator_config/Templates/DuplicateMessageId_QUPC_IN180000SM04_Response.xml 200 urn:nhs:names:services:psisquery/QUQI_IN010000UK14
+LogicalInconsistency_QUPC_IN180000SM04_Response TKW_ROOT/config/SPINE_MTH_SCR_Simulator/simulator_config/Templates/LogicalInconsistency_QUPC_IN180000SM04_Response.xml 200 urn:nhs:names:services:psisquery/QUQI_IN010000UK14
+InvalidUpdate_QUPC_IN180000SM04_Response TKW_ROOT/config/SPINE_MTH_SCR_Simulator/simulator_config/Templates/InvalidUpdate_QUPC_IN180000SM04_Response.xml 200 urn:nhs:names:services:psisquery/QUQI_IN010000UK14
+SystemErrorNoRetry_QUPC_IN180000SM04_Response TKW_ROOT/config/SPINE_MTH_SCR_Simulator/simulator_config/Templates/SystemErrorNoRetry_QUPC_IN180000SM04_Response.xml 200 urn:nhs:names:services:psisquery/QUQI_IN010000UK14
+ServiceNotAvailable_QUPC_IN180000SM04_Response TKW_ROOT/config/SPINE_MTH_SCR_Simulator/simulator_config/Templates/ServiceNotAvailable_QUPC_IN180000SM04_Response.xml 200 urn:nhs:names:services:psisquery/QUQI_IN010000UK14
+no_response class:uk.nhs.digital.mait.tkwx.tk.internalservices.rules.routingactor.NoResponse
+do_process	NONE	0
+END RESPONSES
+
+BEGIN SUBSTITUTIONS
+__CREATION_TIMESTAMP__ HL7datetime
+__SIAB_ASID_SYSTEMPROPERTY__ Property mth.my.asid
+__ACKNOWLEDGED_MESSAGEID_XPATH__ Xpath //hl7:QUPC_IN180000SM04/hl7:id/@root
+__ORIGINAL_SND_XPATH__ Xpath //hl7:communicationFunctionSnd/hl7:device/hl7:id/@extension
+__MSGID_UUID__ UUID
+END SUBSTITUTIONS
+
+BEGIN EXPRESSIONS
+#Event List Query Requests
+InvalidRequest_QUPC_IN180000SM04_Rule XpathEquals //hl7:QUPC_IN180000SM04/hl7:ControlActEvent/hl7:query/hl7:nHSNumber/hl7:value/@extension 9999999999
+DuplicateMessageId_QUPC_IN180000SM04_Rule XpathEquals //hl7:QUPC_IN180000SM04/hl7:ControlActEvent/hl7:query/hl7:nHSNumber/hl7:value/@extension 9999999998
+LogicalInconsistency_QUPC_IN180000SM04_Rule XpathEquals //hl7:QUPC_IN180000SM04/hl7:ControlActEvent/hl7:query/hl7:nHSNumber/hl7:value/@extension 9999999997
+InvalidUpdate_QUPC_IN180000SM04_Rule XpathEquals //hl7:QUPC_IN180000SM04/hl7:ControlActEvent/hl7:query/hl7:nHSNumber/hl7:value/@extension 9999999996
+SystemErrorNoRetry_QUPC_IN180000SM04_Rule XpathEquals //hl7:QUPC_IN180000SM04/hl7:ControlActEvent/hl7:query/hl7:nHSNumber/hl7:value/@extension 9999999995
+ServiceNotAvailable_QUPC_IN180000SM04_Rule XpathEquals //hl7:QUPC_IN180000SM04/hl7:ControlActEvent/hl7:query/hl7:nHSNumber/hl7:value/@extension 9999999994
+passthrough	Always
+END EXPRESSIONS
+
+
+
+#Event List Query Requests
+BEGIN RULE
+urn:nhs:names:services:psisquery/QUPC_IN180000SM04
+if InvalidRequest_QUPC_IN180000SM04_Rule then InvalidRequest_QUPC_IN180000SM04_Response else next
+if DuplicateMessageId_QUPC_IN180000SM04_Rule then DuplicateMessageId_QUPC_IN180000SM04_Response else next
+if LogicalInconsistency_QUPC_IN180000SM04_Rule then LogicalInconsistency_QUPC_IN180000SM04_Response else next
+if InvalidUpdate_QUPC_IN180000SM04_Rule then InvalidUpdate_QUPC_IN180000SM04_Response else next
+if SystemErrorNoRetry_QUPC_IN180000SM04_Rule then SystemErrorNoRetry_QUPC_IN180000SM04_Response else next
+if ServiceNotAvailable_QUPC_IN180000SM04_Rule then ServiceNotAvailable_QUPC_IN180000SM04_Response else next
+END RULE
+
+

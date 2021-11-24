@@ -1,0 +1,45 @@
+<eventListQueryResponse>
+  <QUQI_IN010000UK14>
+	<id root="__MSGID_UUID__" />
+	<creationTime value="__CREATION_TIMESTAMP__" />
+	<versionCode code="V3NPfIT4.2.00" />
+	<interactionId root="2.16.840.1.113883.2.1.3.2.4.12" extension="QUQI_IN010000UK14" />
+	<processingCode code="P" />
+	<processingModeCode code="T" />
+	<acceptAckCode code="NE" />
+	<acknowledgement typeCode="AE">
+	  <messageRef>
+		<id root="__ACKNOWLEDGED_MESSAGEID_XPATH__" />
+	  </messageRef>
+	</acknowledgement>
+	<communicationFunctionRcv typeCode="RCV">
+	  <device classCode="DEV" determinerCode="INSTANCE">
+		<id root="1.2.826.0.1285.0.2.0.107" extension="__ORIGINAL_SND_XPATH__" />
+	  </device>
+	</communicationFunctionRcv>
+	<communicationFunctionSnd typeCode="SND">
+	  <device classCode="DEV" determinerCode="INSTANCE">
+		<id root="1.2.826.0.1285.0.2.0.107" extension="__SIAB_ASID_SYSTEMPROPERTY__" />
+	  </device>
+	</communicationFunctionSnd>
+	<ControlActEvent classCode="CACT" moodCode="EVN">
+	  <author1 typeCode="AUT">
+		<AgentSystemSDS classCode="AGNT">
+		  <agentSystemSDS classCode="DEV" determinerCode="INSTANCE">
+			<id root="1.2.826.0.1285.0.2.0.107" extension="__SIAB_ASID_SYSTEMPROPERTY__" />
+		  </agentSystemSDS>
+		</AgentSystemSDS>
+	  </author1>
+	  <reason typeCode="RSON">
+		<justifyingDetectedIssueEvent classCode="ALRT" moodCode="EVN">
+		  <code code="401" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.33" displayName="Duplicate Message ID">
+			<qualifier code="ER" />
+		  </code>
+		</justifyingDetectedIssueEvent>
+	  </reason>
+	  <queryAck type="QueryAck">
+		<queryResponseCode code="ID" />
+	  </queryAck>
+	</ControlActEvent>
+  </QUQI_IN010000UK14>
+</eventListQueryResponse>
