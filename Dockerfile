@@ -1,4 +1,4 @@
-FROM nhsdigitalmait/tkw-x:350ecba
+FROM nhsdigitalmait/tkw-x:3748df7
 ARG USER_ID
 
 RUN useradd -rm -u $USER_ID service
@@ -14,7 +14,8 @@ RUN sh set-all-configurations.sh
 ENV trustStore=default
 ENV trustStorePassword=default
 ENV keyStore=default
-ENV keyStorePassword=default
+ENV serverAsid=default
+ENV serverCPAID=default
 USER service
 ENTRYPOINT ["bash", "runtkwentrypoint.sh"]
 

@@ -5,4 +5,11 @@ services:
             - '5000:5000'
         volumes:
             - '${HOME}/Scratch/scr_data:/home/service/data'
+        environment:
+            - trustStore=default
+            - trustStorePassword=default
+            - keyStore=default
+            - keyStorePassword=default
+            - serverAsid=999999999999
+            - serverCPAID=X99999Y999999
         image: 'nhsdigitalmait/tkw_scr_simulator:0.1'

@@ -15,8 +15,8 @@ echo "trustStore = " $trustStore
 echo "trustStorePassword = " $trustStorePassword
 echo "keyStore = " $keyStore
 echo "keyStorePassword = " $keyStorePassword
-echo "forwardingAddress = " $forwardingAddress
-echo "forwardingPort = " $forwardingPort
+echo "serverAsid = " $serverAsid
+echo "serverCPAID = " $serverCPAID
 echo "Making sure output structure is available"
 
 cd /home/service/data
@@ -29,8 +29,8 @@ if [ "$trustStore" == 'default' ]
 then
 	#ClearText
 	java -version
-	java -XX:+UseContainerSupport -XX:MaxRAMPercentage=80.0 -jar /home/service/TKW/TKW-x.jar -httpinterceptor /home/service/TKW/config/SPINE_MTH_SCR_Simulator/tkw-x_mth_server.properties
+	java -XX:+UseContainerSupport -XX:MaxRAMPercentage=80.0 -Dtks.spine.my.asid=$serverAsid -Dtks.spine.my.ack.cpaid=$serverCPAID -jar /home/service/TKW/TKW-x.jar -httpinterceptor /home/service/TKW/config/SPINE_MTH_SCR_Simulator/tkw-x_mth_server.properties
 else
 	#TLSMA
-	java -Djavax.net.ssl.trustStore=$trustStore -Djavax.net.ssl.trustStorePassword=$trustStorePassword -Djavax.net.ssl.keyStore=$keyStore -Djavax.net.ssl.keyStorePassword=$keyStorePassword -jar /home/service/TKW/TKW-x.jar -httpinterceptor /home/service/TKW/config/SPINE_MTH_SCR_Simulator/tkw-x_mth_server.properties
+	java -Djavax.net.ssl.trustStore=$trustStore -Djavax.net.ssl.trustStorePassword=$trustStorePassword -Djavax.net.ssl.keyStore=$keyStore -Djavax.net.ssl.keyStorePassword=$keyStorePassword -Dtks.spine.my.asid=$serverAsid -Dtks.spine.my.ack.cpaid=$serverCPAID -jar /home/service/TKW/TKW-x.jar -httpinterceptor /home/service/TKW/config/SPINE_MTH_SCR_Simulator/tkw-x_mth_server.properties
 fi

@@ -32,14 +32,14 @@
 	  </author1>
 	  <reason typeCode="RSON">
 		<justifyingDetectedIssueEvent classCode="ALRT" moodCode="EVN">
-		  <code code="420" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.33" displayName="Business condition related to access control  which prevents the action being performed by PSIS">
+		  <code code="410" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.33" displayName="Logical inconsistency">
 			<qualifier code="ER" />
 		  </code>
 		</justifyingDetectedIssueEvent>
 	  </reason>
 	  <reason typeCode="RSON">
 		<justifyingDetectedIssueEvent classCode="ALRT" moodCode="EVN">
-		  <code code="30418" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.33" displayName="[PSIS-30418] - ACF does not permit access to resource">
+		  <code code="30142" codeSystem="2.16.840.1.113883.2.1.3.2.4.17.33" displayName="30142 - Duplicate document with docId x and nhsNumber y.">
 			<qualifier code="ER" />
 		  </code>
 		</justifyingDetectedIssueEvent>
